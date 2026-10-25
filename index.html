@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Neón Interactivo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #050505;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 50px;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00f3ff, 0 0 40px #00f3ff, 0 0 80px #00f3ff;
+            animation: parpadeo 3s infinite alternate;
+        }
+
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .opcion-neon {
+            background: transparent;
+            font-family: inherit;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 15px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .opcion-neon:active { transform: scale(0.97); }
+
+        .opcion-cian {
+            color: #00f3ff;
+            border: 2px solid #00f3ff;
+            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.2), 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+        .opcion-cian:hover { color: #050505; background: #00f3ff; box-shadow: 0 0 20px #00f3ff, 0 0 50px #00f3ff; }
+
+        .opcion-rosa {
+            color: #ff007f;
+            border: 2px solid #ff007f;
+            box-shadow: inset 0 0 10px rgba(255, 0, 127, 0.2), 0 0 10px rgba(255, 0, 127, 0.2);
+        }
+        .opcion-rosa:hover { color: #050505; background: #ff007f; box-shadow: 0 0 20px #ff007f, 0 0 50px #ff007f; }
+
+        .opcion-verde {
+            color: #39ff14;
+            border: 2px solid #39ff14;
+            box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.2), 0 0 10px rgba(57, 255, 20, 0.2);
+        }
+        .opcion-verde:hover { color: #050505; background: #39ff14; box-shadow: 0 0 20px #39ff14, 0 0 50px #39ff14; }
+
+        @keyframes parpadeo {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #00f3ff, 0 0 40px #00f3ff, 0 0 80px #00f3ff;
+            }
+            20%, 24%, 55% { text-shadow: none; color: #333; }
+        }
+
+        @media (prefers-reduced-motion: reduce) { h1 { animation: none; } }
+        @media (max-width: 480px) { h1 { font-size: 2rem; } }
+    </style>
+</head>
+<body>
+
+    <h1>Selecciona Opción</h1>
+
+    <div class="menu-container">
+        <a class="opcion-neon opcion-verde" href="juegos/">games</a>
+        <a class="opcion-neon opcion-cian" href="musica/">música</a>
+        <a class="opcion-neon opcion-rosa" href="copiar/">copiar</a>
+        <a class="opcion-neon opcion-verde" href="hack-station/">hack</a>
+    </div>
+
+</body>
+</html>
