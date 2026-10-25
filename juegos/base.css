@@ -1,0 +1,27 @@
+:root {
+  --bg: #12202b; --panel: #1b3040; --grid: #223b4d;
+  --accent: #7be0a4; --accent-light: #c9ffe0; --warn: #ff7a59;
+  --text: #e8f1f5; --muted: #8fa9b8;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  display: flex; justify-content: center; padding: 16px;
+}
+main { width: 100%; max-width: 420px; }
+header { display: flex; justify-content: space-between; align-items: baseline; margin: 8px 0 12px; }
+h1 { margin: 0; font-size: 1.8rem; }
+.scores { display: flex; gap: 14px; color: var(--muted); font-size: .95rem; }
+.scores b { color: var(--text); }
+.back { display: inline-block; color: var(--muted); text-decoration: none; font-size: .95rem; }
+.back:hover { color: var(--accent-light); }
+button { font: inherit; cursor: pointer; }
+.btn {
+  background: var(--accent); color: #0c2417; border: 0;
+  padding: 12px 28px; border-radius: 999px; font-weight: 700; font-size: 1.05rem;
+}
+.btn:hover { background: var(--accent-light); }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--accent-light); outline-offset: 2px; }
+.hint { color: var(--muted); font-size: .85rem; text-align: center; margin: 12px 0 0; }

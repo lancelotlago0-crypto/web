@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #050505;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .volver { align-self: flex-start; color: #8a8a8a; text-decoration: none; font-size: .95rem; }
+        .volver:hover { color: #00f3ff; }
+
+        h1 {
+            font-size: 2.4rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 20px 0 30px;
+            text-shadow: 0 0 5px #fff, 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+        }
+
+        .lista { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; width: 100%; max-width: 320px; }
+
+        .opcion-neon {
+            width: 100%;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .3s ease;
+            color: #00f3ff;
+            border: 2px solid #00f3ff;
+            box-shadow: inset 0 0 10px rgba(0, 243, 255, .2), 0 0 10px rgba(0, 243, 255, .2);
+        }
+        .opcion-neon:hover { color: #050505; background: #00f3ff; box-shadow: 0 0 20px #00f3ff, 0 0 50px #00f3ff; }
+        .opcion-neon:active { transform: scale(.97); }
+        .opcion-neon.sonando {
+            color: #ff007f; border-color: #ff007f; background: transparent;
+            box-shadow: 0 0 20px #ff007f, inset 0 0 12px rgba(255, 0, 127, .3);
+        }
+
+        .player { width: 100%; max-width: 320px; margin-top: 32px; text-align: center; }
+        #ahora { color: #8a8a8a; margin-bottom: 10px; min-height: 1.5em; }
+        #barra { width: 100%; accent-color: #39ff14; }
+        .tiempos { display: flex; justify-content: space-between; font-size: .8rem; color: #8a8a8a; }
+        .controles { display: flex; justify-content: center; gap: 14px; margin-top: 12px; }
+        .controles button {
+            background: transparent; color: #39ff14; border: 2px solid #39ff14; border-radius: 50%;
+            width: 52px; height: 52px; font-size: 1.3rem; cursor: pointer;
+            box-shadow: 0 0 10px rgba(57, 255, 20, .3);
+        }
+        .controles button:active { transform: scale(.93); }
+        #aviso { color: #ff007f; font-size: .9rem; min-height: 1.2em; }
+
+        button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+        @media (max-width: 480px) { h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <a class="volver" href="../">← Volver</a>
+    <h1>Música</h1>
+
+    <ul id="lista" class="lista"></ul>
+
+    <div class="player">
+        <div id="ahora">Elige una canción</div>
+        <input type="range" id="barra" min="0" max="100" value="0" step="0.1" aria-label="Progreso">
+        <div class="tiempos"><span id="t1">0:00</span><span id="t2">0:00</span></div>
+        <div class="controles">
+            <button id="prev" aria-label="Anterior">⏮</button>
+            <button id="pp" aria-label="Reproducir o pausar">▶</button>
+            <button id="next" aria-label="Siguiente">⏭</button>
+        </div>
+        <p id="aviso"></p>
+    </div>
+
+    <audio id="audio" preload="none"></audio>
+
+    <script>
+        // ===== EDITA AQUÍ =====
+        // Cambia el título y el nombre del archivo (que debe estar dentro de la carpeta "audio").
+        // Para añadir más canciones, copia una línea.
+const PISTAS = [
+    { titulo: 'rango', archivo: 'audio/musica1.mp3' },
+    { titulo: 'freaks', archivo: 'audio/musica2.mp3' },
+    { titulo: 'juliojaramillo', archivo: 'audio/musica3.mp3' },
+    { titulo: 'house-of-memories', archivo: 'audio/musica4.mp3' },
+    { titulo: 'aventurero', archivo: 'audio/musica5.mp3' },
+    { titulo: 'yo-el-aventurero', archivo: 'audio/musica6.mp3' },
+    { titulo: 'vaca-muerta', archivo: 'audio/musica7.mp3' }
+];
+        // ======================
+
+        const $ = id => document.getElementById(id);
+        const audio = $('audio'), lista = $('lista'), barra = $('barra'), aviso = $('aviso');
+        let actual = -1;
+
+        const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
+
+        PISTAS.forEach((p, i) => {
+            const li = document.createElement('li');
+            const b = document.createElement('button');
+            b.className = 'opcion-neon';
+            b.textContent = p.titulo;
+            b.addEventListener('click', () => elegir(i));
+            li.appendChild(b);
+            lista.appendChild(li);
+        });
+
+        function marcar() {
+            [...lista.querySelectorAll('button')].forEach((b, i) => b.classList.toggle('sonando', i === actual && !audio.paused));
+            $('pp').textContent = audio.paused ? '▶' : '||';
+        }
+
+        function elegir(i) {
+            if (i === actual) { alternar(); return; }
+            actual = i;
+            aviso.textContent = '';
+            audio.src = PISTAS[i].archivo;
+            $('ahora').textContent = '♪ ' + PISTAS[i].titulo;
+            audio.play().catch(() => {});
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.metadata = new MediaMetadata({ title: PISTAS[i].titulo });
+            }
+        }
+
+        function alternar() {
+            if (actual < 0) { elegir(0); return; }
+            if (audio.paused) audio.play().catch(() => {}); else audio.pause();
+        }
+
+        const siguiente = () => elegir((actual + 1) % PISTAS.length);
+        const anterior = () => elegir((actual - 1 + PISTAS.length) % PISTAS.length);
+
+        $('pp').addEventListener('click', alternar);
+        $('next').addEventListener('click', siguiente);
+        $('prev').addEventListener('click', anterior);
+
+        audio.addEventListener('play', marcar);
+        audio.addEventListener('pause', marcar);
+        audio.addEventListener('ended', siguiente);
+        audio.addEventListener('error', () => {
+            aviso.textContent = 'No se encontró ' + PISTAS[actual].archivo + '. Súbelo a la carpeta audio.';
+            marcar();
+        });
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) barra.value = (audio.currentTime / audio.duration) * 100;
+            $('t1').textContent = fmt(audio.currentTime);
+            $('t2').textContent = fmt(audio.duration);
+        });
+        barra.addEventListener('input', () => {
+            if (audio.duration) audio.currentTime = (barra.value / 100) * audio.duration;
+        });
+
+        // Controles en la pantalla de bloqueo del teléfono
+        if ('mediaSession' in navigator) {
+            try {
+                navigator.mediaSession.setActionHandler('play', () => audio.play());
+                navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+                navigator.mediaSession.setActionHandler('previoustrack', anterior);
+                navigator.mediaSession.setActionHandler('nexttrack', siguiente);
+            } catch (e) {}
+        }
+    </script>
+</body>
+</html>
+

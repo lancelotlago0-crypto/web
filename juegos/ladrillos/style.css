@@ -1,0 +1,16 @@
+main { max-width: 380px; }
+.bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.lives { color: var(--warn); font-size: 1.3rem; letter-spacing: 3px; min-height: 1.5em; }
+.pausa {
+  background: var(--panel); color: var(--text); border: 2px solid var(--grid);
+  border-radius: 10px; padding: 4px 14px; font-size: 1.1rem;
+}
+.stage { position: relative; border-radius: 12px; overflow: hidden; border: 3px solid var(--grid); background: #0b1030; }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 9 / 14; touch-action: none; }
+.overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 14px; padding: 20px;
+  background: rgba(11, 16, 48, .88); text-align: center;
+}
+.overlay.hidden { display: none; }
+.overlay p { margin: 0; font-size: 1.1rem; }

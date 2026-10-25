@@ -1,0 +1,9 @@
+.cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.card {
+  aspect-ratio: 1; border-radius: 12px; border: 2px solid var(--grid);
+  background: var(--panel); color: transparent; font-size: 2rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.card:hover { border-color: var(--accent); }
+.card.open, .card.done { color: var(--text); background: var(--grid); }
+.card.done { border-color: var(--accent); cursor: default; }

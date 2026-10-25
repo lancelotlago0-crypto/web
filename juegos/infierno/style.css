@@ -1,0 +1,18 @@
+.stage { position: relative; border-radius: 12px; overflow: hidden; border: 3px solid var(--grid); background: #000; }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 8 / 5; image-rendering: pixelated; touch-action: none; }
+.overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 14px; padding: 20px;
+  background: rgba(18, 32, 43, .88); text-align: center;
+}
+.overlay.hidden { display: none; }
+.overlay p { margin: 0; font-size: 1.1rem; }
+.pad { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+.pad button {
+  background: var(--panel); color: var(--text); border: 2px solid var(--grid);
+  border-radius: 12px; padding: 14px 0; font-size: 1.2rem; touch-action: none; user-select: none;
+}
+.pad button:active { background: var(--grid); }
+.pad .wide { grid-column: 1 / -1; }
+.pad .fire { background: #6b2a1e; border-color: var(--warn); font-weight: 700; letter-spacing: .05em; }
+@media (min-width: 700px) { .pad { display: none; } }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tres en raya</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Tres en raya</h1>
+      <div class="scores"><span>Tú: <b id="sx">0</b></span><span>Rival: <b id="so">0</b></span></div>
+    </header>
+    <div class="mode">
+      <label><input type="radio" name="mode" value="cpu" checked> Contra la máquina</label>
+      <label><input type="radio" name="mode" value="two"> Dos jugadores</label>
+    </div>
+    <div id="board" class="board3"></div>
+    <p id="msg" class="hint">Turno de X</p>
+    <p style="text-align:center"><button id="restart" class="btn">Nueva partida</button></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

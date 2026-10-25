@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pong</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Pong</h1>
+      <div class="scores"><span>Tú: <b id="me">0</b></span><span>Máquina: <b id="cpu">0</b></span></div>
+    </header>
+    <div class="stage">
+      <canvas id="game" width="320" height="480" aria-label="Zona de juego"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="text">Gana el primero en llegar a 7 puntos</p>
+        <button id="start" class="btn">Jugar</button>
+      </div>
+    </div>
+    <p class="hint">Arrastra el dedo o el ratón para mover tu pala (abajo). En teclado: ← →.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

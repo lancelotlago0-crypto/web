@@ -1,0 +1,16 @@
+.stage { position: relative; border-radius: 14px; overflow: hidden; border: 3px solid var(--grid); background: var(--panel); }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; touch-action: none; }
+.overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 14px; padding: 20px;
+  background: rgba(18, 32, 43, .85); text-align: center;
+}
+.overlay.hidden { display: none; }
+.overlay p { margin: 0; font-size: 1.1rem; }
+.pad { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.pad button {
+  background: var(--panel); color: var(--text); border: 2px solid var(--grid);
+  border-radius: 12px; padding: 14px 0; font-size: 1.2rem; touch-action: none;
+}
+.pad button:active { background: var(--grid); }
+@media (min-width: 700px) { .pad { display: none; } }

@@ -1,0 +1,11 @@
+.mode { display: flex; gap: 16px; justify-content: center; margin-bottom: 14px; color: var(--muted); font-size: .95rem; }
+.board3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.cell {
+  aspect-ratio: 1; background: var(--panel); border: 2px solid var(--grid);
+  border-radius: 12px; font-size: 3rem; font-weight: 700; color: var(--text);
+}
+.cell:hover:not(:disabled) { border-color: var(--accent); }
+.cell.x { color: var(--accent); }
+.cell.o { color: var(--warn); }
+.cell.win { background: var(--grid); border-color: var(--accent-light); }
+.hint { font-size: 1.05rem; color: var(--text); }

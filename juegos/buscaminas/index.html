@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscaminas</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Buscaminas</h1>
+      <select id="level" aria-label="Dificultad">
+        <option value="easy">Fácil 9×9</option>
+        <option value="mid">Medio 12×12</option>
+        <option value="hard">Difícil 14×14</option>
+      </select>
+    </header>
+    <div class="bar">
+      <span>💣 <b id="mines">10</b></span>
+      <button id="face" class="face" aria-label="Reiniciar">🙂</button>
+      <span>⏱ <b id="time">000</b></span>
+    </div>
+    <div id="board" class="board"></div>
+    <p id="msg" class="hint">Toca para destapar. Mantén pulsado (o clic derecho) para poner bandera.</p>
+    <p style="text-align:center"><button id="flagmode" class="toggle">🚩 Modo bandera: no</button></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

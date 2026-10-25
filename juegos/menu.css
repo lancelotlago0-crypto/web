@@ -1,0 +1,11 @@
+.intro { color: var(--muted); margin: 0 0 16px; }
+.games { display: flex; flex-direction: column; gap: 12px; }
+.games a {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--panel); border: 2px solid var(--grid); border-radius: 14px;
+  padding: 16px; color: var(--text); text-decoration: none;
+}
+.games a:hover { border-color: var(--accent); }
+.icon { font-size: 2rem; width: 48px; text-align: center; }
+.games b { display: block; font-size: 1.15rem; }
+.games small { color: var(--muted); font-size: .9rem; }

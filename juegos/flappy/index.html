@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flappy</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Flappy</h1>
+      <div class="scores">
+        <span>Puntos: <b id="score">0</b></span>
+        <span>Récord: <b id="best">0</b></span>
+        <button id="mute" class="mute" aria-label="Sonido">🔊</button>
+      </div>
+    </header>
+    <div class="stage">
+      <canvas id="game" width="320" height="480" aria-label="Zona de juego"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="text">Toca para aletear y pasa entre las tuberías</p>
+        <button id="start" class="btn">Jugar</button>
+      </div>
+    </div>
+    <p class="hint">Toca la pantalla, clic o Espacio para aletear. Cada 8 puntos cambia la hora del día.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

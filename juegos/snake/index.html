@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Serpiente</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Serpiente</h1>
+      <div class="scores">
+        <span>Puntos: <b id="score">0</b></span>
+        <span>Récord: <b id="best">0</b></span>
+      </div>
+    </header>
+
+    <div class="board">
+      <canvas id="game" width="400" height="400" aria-label="Tablero del juego"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="msg">Pulsa Jugar o la barra espaciadora</p>
+        <button id="start">Jugar</button>
+      </div>
+    </div>
+
+    <div class="pad" aria-label="Controles táctiles">
+      <button data-dir="up" aria-label="Arriba">▲</button>
+      <button data-dir="left" aria-label="Izquierda">◀</button>
+      <button data-dir="down" aria-label="Abajo">▼</button>
+      <button data-dir="right" aria-label="Derecha">▶</button>
+    </div>
+    <p class="hint">Flechas o WASD para moverte. En móvil, desliza o usa los botones.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

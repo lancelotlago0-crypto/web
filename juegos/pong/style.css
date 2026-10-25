@@ -1,0 +1,10 @@
+main { max-width: 360px; }
+.stage { position: relative; border-radius: 12px; overflow: hidden; border: 3px solid var(--grid); background: var(--panel); }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; touch-action: none; }
+.overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 14px; padding: 20px;
+  background: rgba(18, 32, 43, .88); text-align: center;
+}
+.overlay.hidden { display: none; }
+.overlay p { margin: 0; font-size: 1.1rem; }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tetris</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header><h1>Tetris</h1></header>
+    <div class="layout">
+      <div class="stage">
+        <canvas id="game" width="300" height="600" aria-label="Tablero de Tetris"></canvas>
+        <div id="overlay" class="overlay">
+          <p id="text">Apila las piezas y completa líneas</p>
+          <button id="start" class="btn">Jugar</button>
+        </div>
+      </div>
+      <aside class="side">
+        <div class="box"><span>Siguiente</span><canvas id="next" width="80" height="80"></canvas></div>
+        <div class="box"><span>Puntos</span><b id="score">0</b></div>
+        <div class="box"><span>Líneas</span><b id="lines">0</b></div>
+        <div class="box"><span>Nivel</span><b id="level">1</b></div>
+        <div class="box"><span>Récord</span><b id="best">0</b></div>
+      </aside>
+    </div>
+    <div class="pad">
+      <button data-act="left" aria-label="Izquierda">◀</button>
+      <button data-act="rotate" aria-label="Girar">⟳</button>
+      <button data-act="right" aria-label="Derecha">▶</button>
+      <button data-act="down" aria-label="Bajar">▼</button>
+      <button data-act="drop" aria-label="Caída rápida" class="wide">Caer</button>
+    </div>
+    <p class="hint">← → mover · ↑ girar · ↓ bajar · Espacio caída rápida · P pausa</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

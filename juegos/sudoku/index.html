@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sudoku</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Sudoku</h1>
+      <select id="level" aria-label="Dificultad">
+        <option value="easy">Fácil</option>
+        <option value="mid">Medio</option>
+        <option value="hard">Difícil</option>
+      </select>
+    </header>
+    <div id="grid" class="grid" role="grid" aria-label="Tablero de Sudoku"></div>
+    <div id="pad" class="pad"></div>
+    <p id="msg" class="hint">Toca una casilla y elige un número.</p>
+    <p class="actions">
+      <button id="hint" class="btn small">Pista</button>
+      <button id="new" class="btn small">Nuevo</button>
+    </p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

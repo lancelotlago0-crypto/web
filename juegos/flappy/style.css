@@ -1,0 +1,15 @@
+main { max-width: 360px; }
+.scores { align-items: center; }
+.mute {
+  background: var(--panel); border: 2px solid var(--grid); border-radius: 10px;
+  padding: 2px 8px; font-size: 1rem; color: var(--text);
+}
+.stage { position: relative; border-radius: 12px; overflow: hidden; border: 3px solid var(--grid); background: var(--panel); }
+canvas { display: block; width: 100%; height: auto; aspect-ratio: 2 / 3; touch-action: manipulation; }
+.overlay {
+  position: absolute; inset: 0; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; gap: 16px; padding: 20px;
+  background: rgba(18, 32, 43, .86); text-align: center;
+}
+.overlay.hidden { display: none; }
+.overlay p { margin: 0; font-size: 1.15rem; line-height: 1.5; white-space: pre-line; }

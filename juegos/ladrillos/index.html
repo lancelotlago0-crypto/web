@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ladrillos</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Ladrillos</h1>
+      <div class="scores"><span>Rotos: <b id="score">0</b></span><span>Récord: <b id="best">0</b></span></div>
+    </header>
+    <div class="bar">
+      <span class="lives" id="lives" aria-label="Vidas">♥♥♥</span>
+      <button id="pause" class="pausa" aria-label="Pausa">⏸</button>
+    </div>
+    <div class="stage">
+      <canvas id="game" width="360" height="560" aria-label="Zona de juego"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="text">Rompe todos los ladrillos. Tienes 3 vidas.</p>
+        <button id="start" class="btn">Jugar</button>
+      </div>
+    </div>
+    <p class="hint">Arrastra el dedo para mover la pala. Toca para lanzar la bola. Cada golpe abre un cráter; los ladrillos grises ya están dañados.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

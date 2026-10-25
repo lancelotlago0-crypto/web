@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Piedra, papel o tijera</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Piedra, papel o tijera</h1>
+    </header>
+    <div class="marcador">
+      <div><span>Tú</span><b id="me">0</b></div>
+      <div><span>Empates</span><b id="tie">0</b></div>
+      <div><span>Máquina</span><b id="cpu">0</b></div>
+    </div>
+    <div class="arena">
+      <div id="mine" class="mano">❔</div>
+      <div class="vs">VS</div>
+      <div id="theirs" class="mano">❔</div>
+    </div>
+    <p id="msg" class="resultado">Gana el primero en llegar a 5. Elige:</p>
+    <div class="opciones">
+      <button data-o="0" aria-label="Piedra">✊</button>
+      <button data-o="1" aria-label="Papel">✋</button>
+      <button data-o="2" aria-label="Tijera">✌️</button>
+    </div>
+    <p style="text-align:center"><button id="reset" class="btn">Nueva partida</button></p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

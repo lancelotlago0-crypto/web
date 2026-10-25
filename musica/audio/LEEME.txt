@@ -1,0 +1,8 @@
+Pon aquí tus archivos de música con estos nombres:
+
+  musica1.mp3
+  musica2.mp3
+  musica3.mp3
+
+Si tus archivos se llaman distinto, cambia los nombres en la lista PISTAS
+dentro de ../index.html (zona "EDITA AQUÍ").

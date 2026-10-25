@@ -1,0 +1,44 @@
+.board {
+  position: relative; aspect-ratio: 1; padding: 6px; border-radius: 14px;
+  background: var(--grid); touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.grid { position: relative; width: 100%; height: 100%; }
+.tile {
+  position: absolute; left: 0; top: 0; width: 25%; height: 25%;
+  transition: transform .16s cubic-bezier(.22, .8, .3, 1);
+  will-change: transform;
+}
+.in {
+  position: absolute; inset: 4px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: clamp(1.3rem, 8vw, 2.1rem); color: var(--text);
+  background: #2e4d63;
+}
+.slot .in { background: var(--panel); }
+.in[data-d="3"] { font-size: clamp(1.1rem, 6.5vw, 1.75rem); }
+.in[data-d="4"] { font-size: clamp(.9rem, 5.2vw, 1.4rem); }
+.in[data-v="2"] { background: #2e4d63; }
+.in[data-v="4"] { background: #38627f; }
+.in[data-v="8"] { background: #3f7f8f; }
+.in[data-v="16"] { background: #4a9e95; }
+.in[data-v="32"] { background: #5fbf98; color: #0c2417; }
+.in[data-v="64"] { background: #7be0a4; color: #0c2417; }
+.in[data-v="128"] { background: #c8e07b; color: #1f2a08; }
+.in[data-v="256"] { background: #f5d65c; color: #2a2208; }
+.in[data-v="512"] { background: #f5a45c; color: #2a1608; }
+.in[data-v="1024"] { background: #ff7a59; color: #2a0f08; }
+.in[data-v="2048"] { background: #ff5a7a; color: #fff; }
+.in.big { background: #b48cf0; color: #1d1030; }
+.in.pop { animation: pop .2s .1s ease-out backwards; }
+.in.bump { animation: bump .18s ease-out; }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+@keyframes bump { 50% { transform: scale(1.15); } }
+.overlay {
+  position: absolute; inset: 0; border-radius: 14px; z-index: 5;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px;
+  background: rgba(18, 32, 43, .88); text-align: center; padding: 20px;
+}
+.overlay p { margin: 0; font-size: 1.3rem; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.hidden { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .in.pop, .in.bump { animation: none; } }

@@ -1,0 +1,18 @@
+h1 { font-size: 1.5rem; }
+.marcador { display: flex; justify-content: space-around; margin-bottom: 18px; }
+.marcador div { display: flex; flex-direction: column; align-items: center; gap: 2px; background: var(--panel); border: 2px solid var(--grid); border-radius: 12px; padding: 8px 16px; min-width: 88px; }
+.marcador span { color: var(--muted); font-size: .85rem; }
+.marcador b { font-size: 1.6rem; }
+.arena { display: flex; align-items: center; justify-content: space-around; margin: 10px 0; }
+.mano { font-size: 4.2rem; width: 110px; height: 110px; display: flex; align-items: center; justify-content: center; background: var(--panel); border: 2px solid var(--grid); border-radius: 18px; }
+.mano.sacude { animation: sacude .5s ease-in-out; }
+.mano.gana { border-color: var(--accent); }
+.mano.pierde { border-color: var(--warn); opacity: .7; }
+.vs { color: var(--muted); font-weight: 700; }
+.resultado { text-align: center; font-size: 1.15rem; min-height: 1.6em; margin: 14px 0; }
+.opciones { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+.opciones button { font-size: 2.6rem; padding: 14px 0; background: var(--panel); border: 2px solid var(--grid); border-radius: 16px; }
+.opciones button:hover:not(:disabled) { border-color: var(--accent); }
+.opciones button:disabled { opacity: .5; cursor: default; }
+@keyframes sacude { 0%,100% { transform: translateY(0); } 25% { transform: translateY(-14px) rotate(-6deg); } 50% { transform: translateY(0); } 75% { transform: translateY(-14px) rotate(6deg); } }
+@media (prefers-reduced-motion: reduce) { .mano.sacude { animation: none; } }

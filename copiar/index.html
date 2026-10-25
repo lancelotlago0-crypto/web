@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar texto</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #050505;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .volver { align-self: flex-start; color: #8a8a8a; text-decoration: none; font-size: .95rem; }
+        .volver:hover { color: #ff007f; }
+        h1 {
+            font-size: 2.2rem; text-transform: uppercase; letter-spacing: 4px;
+            margin: 20px 0 20px; text-align: center;
+            text-shadow: 0 0 5px #fff, 0 0 20px #ff007f, 0 0 40px #ff007f;
+        }
+        .oculto { display: none !important; }
+
+        /* Pantalla de contraseña */
+        #bloqueo { width: 100%; max-width: 320px; display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+        #clave {
+            font-family: inherit; font-size: 1.1rem; text-align: center; letter-spacing: 3px;
+            background: transparent; color: #fff; border: 2px solid #00f3ff; border-radius: 10px;
+            padding: 14px; box-shadow: inset 0 0 10px rgba(0, 243, 255, .2), 0 0 10px rgba(0, 243, 255, .2);
+        }
+        #clave::placeholder { color: #5a7a7d; letter-spacing: 1px; }
+        #error { color: #ff007f; text-align: center; min-height: 1.4em; margin: 0; font-size: .95rem; }
+
+        .tamano { display: flex; align-items: center; gap: 10px; color: #8a8a8a; font-size: .9rem; margin-bottom: 20px; }
+        .tamano input { accent-color: #39ff14; }
+        .lista { width: 100%; max-width: 560px; display: flex; flex-direction: column; gap: 24px; }
+        .tarjeta {
+            border: 2px solid #ff007f; border-radius: 12px; padding: 20px; text-align: center;
+            box-shadow: inset 0 0 10px rgba(255, 0, 127, .2), 0 0 12px rgba(255, 0, 127, .25);
+        }
+        .texto {
+            font-family: 'Noto Sans Egyptian Hieroglyphs', 'Segoe UI Historic', 'Segoe UI Symbol', 'Noto Sans Symbols', 'Noto Sans Symbols 2', 'Apple Symbols', sans-serif;
+            font-size: var(--tam, 2.2rem); line-height: 1.5;
+            overflow-wrap: anywhere; word-break: break-all;
+            user-select: all; -webkit-user-select: all; cursor: pointer; margin: 0 0 18px;
+        }
+        .btn {
+            font-family: inherit; font-size: 1.1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            background: transparent; color: #39ff14; border: 2px solid #39ff14; border-radius: 10px;
+            padding: 12px 28px; cursor: pointer; transition: all .3s ease;
+            box-shadow: inset 0 0 10px rgba(57, 255, 20, .2), 0 0 10px rgba(57, 255, 20, .2);
+        }
+        .btn:hover, .btn.ok { color: #050505; background: #39ff14; box-shadow: 0 0 20px #39ff14, 0 0 40px #39ff14; }
+        .btn:active { transform: scale(.97); }
+        button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+        @media (max-width: 480px) { h1 { font-size: 1.7rem; } }
+    </style>
+</head>
+<body>
+    <a class="volver" href="../">← Volver</a>
+    <h1>Copiar texto</h1>
+
+    <form id="bloqueo" autocomplete="off">
+        <input id="clave" type="password" placeholder="Contraseña" aria-label="Contraseña" autocomplete="off">
+        <button class="btn" type="submit">Entrar</button>
+        <p id="error" role="alert"></p>
+    </form>
+
+    <div id="contenido" class="oculto" style="width:100%;display:flex;flex-direction:column;align-items:center;">
+        <label class="tamano">Tamaño
+            <input type="range" id="tam" min="1.2" max="4" step="0.1" value="2.2">
+        </label>
+        <div id="lista" class="lista"></div>
+    </div>
+
+    <script>
+        // ===== PEGA TUS SÍMBOLOS AQUÍ =====
+        // Cada texto va entre comillas invertidas ` ` y separado por coma.
+        // Para añadir más, copia una línea completa y pega tus símbolos dentro.
+        const TEXTOS = [
+            `☭卍𓆡𓆏𓆉𓆦𓃥𓃠𓃰𓃱𓃯𓃭𓃸𓃵𓃗𓃘𓃙𓃟𓄀𓄁𓄂𓄃𓃚𓃛𓃜𓃝𓃞𓃒𓃓𓃔𓃕𓃖𓃡𓃢𓃦𓃩𓃫𓃬𓃮𓃲𓃴𓃶𓃷𓃹𓃻𓃽𓃾𓃿𓄄𓄅𓄆𓄇𓆈𓆌𓆗𓆘𓆙𓆚𓆐𓆑𓆒𓆓𓆔𓆕𓆖𓆊𓆍𓆣𓆤𓆥𓆧𓆨𓆛𓆜𓆝𓆞𓆠𓆢𓄿𓅀𓅁𓅂𓅃𓅄𓅅𓅆𓅇𓅈𓅉𓅊𓅋𓅌𓅍𓅎𓅏𓅐𓅑𓅒❀ ❀➴ ➶꧁꧂𓇚𓆸 ☬ 𑁍𓆩𓆪☸❣❥❦☆★  ✦✧✩✪✫✬✯✰⚛ﷻ☣︎☢︎𓆧𒅒☾❖𐃆𓆸𓁹𓆙☠𓄿⚔﷽☢︎☣︎ﷻ☂︎𖤐✞♛𖢘𖤍𖣘᳀✿𖠌ᥫ᭡ღ᭄✿メᰔᩚあ⸙`,
+            // `pega aquí otro texto`,
+        ];
+        // Contraseña (cámbiala entre las comillas)
+        const CLAVE = '8019';
+        // ===================================
+
+        const $ = id => document.getElementById(id);
+
+        async function copiar(texto) {
+            try { await navigator.clipboard.writeText(texto); return true; }
+            catch (e) {
+                const ta = document.createElement('textarea');
+                ta.value = texto; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.focus(); ta.select();
+                let ok = false;
+                try { ok = document.execCommand('copy'); } catch (err) {}
+                ta.remove();
+                return ok;
+            }
+        }
+
+        function mostrar() {
+            TEXTOS.filter(t => t.trim()).forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'tarjeta';
+                const p = document.createElement('p');
+                p.className = 'texto';
+                p.textContent = t;
+                const b = document.createElement('button');
+                b.className = 'btn';
+                b.textContent = 'Copiar';
+                const hacer = async () => {
+                    const ok = await copiar(t);
+                    b.textContent = ok ? '¡Copiado!' : 'Mantén pulsado el texto';
+                    b.classList.toggle('ok', ok);
+                    setTimeout(() => { b.textContent = 'Copiar'; b.classList.remove('ok'); }, 1800);
+                };
+                b.addEventListener('click', hacer);
+                p.addEventListener('click', hacer);
+                card.append(p, b);
+                $('lista').appendChild(card);
+            });
+            $('bloqueo').classList.add('oculto');
+            $('contenido').classList.remove('oculto');
+        }
+
+        $('bloqueo').addEventListener('submit', e => {
+            e.preventDefault();
+            if ($('clave').value === CLAVE) {
+                $('clave').value = '';
+                mostrar();
+            } else {
+                $('error').textContent = 'Contraseña incorrecta.';
+                $('clave').select();
+            }
+        });
+
+        $('tam').addEventListener('input', e => {
+            document.documentElement.style.setProperty('--tam', e.target.value + 'rem');
+        });
+    </script>
+</body>
+</html>

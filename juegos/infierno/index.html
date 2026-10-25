@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infierno 3D</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Infierno 3D</h1>
+      <div class="scores"><span>Salud: <b id="hp">100</b></span><span>Demonios: <b id="left">8</b></span></div>
+    </header>
+    <div class="stage">
+      <canvas id="game" width="320" height="200" aria-label="Vista en primera persona"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="text">Elimina a todos los demonios del laberinto</p>
+        <button id="start" class="btn">Jugar</button>
+      </div>
+    </div>
+    <div class="pad">
+      <button data-k="left" aria-label="Girar izquierda">⟲</button>
+      <button data-k="up" aria-label="Avanzar">▲</button>
+      <button data-k="right" aria-label="Girar derecha">⟳</button>
+      <button data-k="down" aria-label="Retroceder">▼</button>
+      <button data-k="fire" class="fire wide">DISPARAR</button>
+    </div>
+    <p class="hint">W/S avanzar y retroceder · A/D o ← → girar · Espacio o clic para disparar</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

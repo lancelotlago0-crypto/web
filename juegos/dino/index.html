@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dino</title>
+  <link rel="stylesheet" href="../base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <a class="back" href="../index.html">← Todos los juegos</a>
+    <header>
+      <h1>Dino</h1>
+      <div class="scores"><span>Puntos: <b id="score">00000</b></span><span>Récord: <b id="best">00000</b></span></div>
+    </header>
+    <div class="stage">
+      <canvas id="game" width="600" height="200" aria-label="Zona de juego"></canvas>
+      <div id="overlay" class="overlay">
+        <p id="text">Salta los cactus y agáchate bajo los pájaros</p>
+        <button id="start" class="btn">Jugar</button>
+      </div>
+    </div>
+    <div class="pad">
+      <button id="jump">Saltar</button>
+      <button id="duck">Agacharse</button>
+    </div>
+    <p class="hint">Espacio o ↑ saltar · ↓ agacharse · En móvil, toca la pantalla para saltar</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
